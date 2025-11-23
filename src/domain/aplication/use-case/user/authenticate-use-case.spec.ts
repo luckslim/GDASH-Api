@@ -1,6 +1,6 @@
+import { User } from '@/domain/enterprise/entities/user';
 import { FakeEncrypter } from '../../../../../test/cryptography/fake-encrypter';
 import { FakeHasher } from '../../../../../test/cryptography/fake-hasher';
-import { MakeUser } from '../../../../../test/factory/make-user-factory';
 import { InMemoryUserRepository } from '../../../../../test/repository/in-memory-user-repository';
 import { AuthenticateUserUseCase } from './authenticate-use-case';
 
@@ -21,15 +21,18 @@ describe('Authenticate User', () => {
     );
   });
   it('Should be able authenticate user', async () => {
-    const user = MakeUser({
+    const user = User.create({
+      name: 'john Snow',
+      userName: 'john_123',
+      email: 'john@email.com',
       password: await hashGenerator.hash('123123'),
     });
 
-    inMemoryUserRepository.create(user);
+    inMemoryUserRepository.items.push(user);
 
     const result = await sut.execute({
       email: user.email,
-      password: user.password,
+      password: '123123',
     });
 
     expect(result.isRight()).toBe(true);

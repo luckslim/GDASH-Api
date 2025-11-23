@@ -1,10 +1,10 @@
 import { left, right, type Either } from '@/core/either';
-import { WrongCredentialsError } from '@/core/errors/wrong-credentials-error';
 import { User } from '../../../enterprise/entities/user';
 
 import { CredentialAlreadyExistError } from '@/core/errors/credential-already-exist-error';
-import type { UserRepository } from '../../repository/user-repository';
-import type { HashGenerator } from '../../cryptography/hash-generator';
+import { UserRepository } from '../../repository/user-repository';
+import { HashGenerator } from '../../cryptography/hash-generator';
+import { Inject, Injectable } from '@nestjs/common';
 
 interface CreateUserRequest {
   name: string;
@@ -13,12 +13,12 @@ interface CreateUserRequest {
   password: string;
 }
 
-type CreateUserResponse = Either<WrongCredentialsError, { user: User }>;
-
+type CreateUserResponse = Either<CredentialAlreadyExistError, { user: User }>;
+@Injectable()
 export class CreateUserUseCase {
   constructor(
-    private userRepository: UserRepository,
-    private hashGenerator: HashGenerator,
+    @Inject(UserRepository) private userRepository: UserRepository,
+    @Inject(HashGenerator) private hashGenerator: HashGenerator,
   ) {}
   async execute({
     name,

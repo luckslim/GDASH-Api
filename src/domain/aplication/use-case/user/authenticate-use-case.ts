@@ -1,11 +1,11 @@
 import { left, right, type Either } from '@/core/either';
 import { WrongCredentialsError } from '@/core/errors/wrong-credentials-error';
-import { User } from '../../../enterprise/entities/user';
 
-import type { UserRepository } from '../../repository/user-repository';
-import type { HashComparer } from '../../cryptography/hash-comparer';
+import { UserRepository } from '../../repository/user-repository';
+import { HashComparer } from '../../cryptography/hash-comparer';
 import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error';
-import type { Encrypter } from '../../cryptography/encrypter';
+import { Encrypter } from '../../cryptography/encrypter';
+import { Inject, Injectable } from '@nestjs/common';
 
 interface AuthenticateUserRequest {
   email: string;
@@ -16,12 +16,12 @@ type AuthenticateUserResponse = Either<
   ResourceNotFoundError,
   { access_token: string }
 >;
-
+@Injectable()
 export class AuthenticateUserUseCase {
   constructor(
-    private userRepository: UserRepository,
-    private hashComparer: HashComparer,
-    private encrypter: Encrypter,
+    @Inject(UserRepository) private userRepository: UserRepository,
+    @Inject(HashComparer) private hashComparer: HashComparer,
+    @Inject(Encrypter) private encrypter: Encrypter,
   ) {}
   async execute({
     email,
@@ -33,7 +33,7 @@ export class AuthenticateUserUseCase {
       return left(new ResourceNotFoundError());
     }
 
-    const isPasswordValid = this.hashComparer.compare(
+    const isPasswordValid = await this.hashComparer.compare(
       password,
       emailExist.password,
     );
