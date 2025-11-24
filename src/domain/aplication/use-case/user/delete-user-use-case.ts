@@ -1,9 +1,9 @@
 import { left, right, type Either } from '@/core/either';
 import { WrongCredentialsError } from '@/core/errors/wrong-credentials-error';
 
-import { UserRepository } from '../../repository/user-repository';
 import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error';
 import { Inject, Injectable } from '@nestjs/common';
+import { UserRepository } from '../../repository/user-repository';
 
 interface DeleteUserRequest {
   id: string; //id from jwt

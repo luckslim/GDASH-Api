@@ -39,6 +39,7 @@ export class CreateUserUseCase {
       return left(new CredentialAlreadyExistError(userName));
     }
     const passwordHashed = await this.hashGenerator.hash(password);
+
     const user = User.create({
       name,
       userName,

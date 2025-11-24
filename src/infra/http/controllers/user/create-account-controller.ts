@@ -7,7 +7,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { z } from 'zod';
-import { ZodValidationPipe } from '../pipe/zod-validation-pipe';
+import { ZodValidationPipe } from '../../pipe/zod-validation-pipe';
 import { CreateUserUseCase } from '@/domain/aplication/use-case/user/create-user-use-case';
 import { CredentialAlreadyExistError } from '@/core/errors/credential-already-exist-error';
 

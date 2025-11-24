@@ -9,7 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { z } from 'zod';
-import { ZodValidationPipe } from '../pipe/zod-validation-pipe';
+import { ZodValidationPipe } from '../../pipe/zod-validation-pipe';
 import { CredentialAlreadyExistError } from '@/core/errors/credential-already-exist-error';
 import { DeleteUserUseCase } from '@/domain/aplication/use-case/user/delete-user-use-case';
 import { CurrentUser } from '@/infra/auth/current-user-decorator';

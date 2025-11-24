@@ -1,20 +1,22 @@
 import { left, right, type Either } from '@/core/either';
-import { WrongCredentialsError } from '@/core/errors/wrong-credentials-error';
-import type { ClimateRepository } from '../../repository/climate-repository';
+import { ClimateRepository } from '../../repository/climate-repository';
 import { Climate } from '@/domain/enterprise/entities/climate';
 import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error';
+import { Inject, Injectable } from '@nestjs/common';
 
 interface DeleteClimateRequest {
   id: string;
 }
 
 type DeleteClimateResponse = Either<
-  WrongCredentialsError,
+  ResourceNotFoundError,
   { climate: Climate }
 >;
-
+@Injectable()
 export class DeleteClimateUseCase {
-  constructor(private climateRepository: ClimateRepository) {}
+  constructor(
+    @Inject(ClimateRepository) private climateRepository: ClimateRepository,
+  ) {}
   async execute({ id }: DeleteClimateRequest): Promise<DeleteClimateResponse> {
     const climate = await this.climateRepository.findById(id);
 

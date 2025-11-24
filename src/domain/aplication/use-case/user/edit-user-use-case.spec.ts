@@ -1,10 +1,12 @@
-import { FakeHasher } from '../../../../../test/cryptography/fake-hasher';
-import { MakeUser } from '../../../../../test/factory/make-user-factory';
-import { InMemoryUserRepository } from '../../../../../test/repository/in-memory-user-repository';
+import { InMemoryUserRepository } from 'test/repository/in-memory-user-repository';
 import { EditUserUseCase } from './edit-user-use-case';
+import { FakeHasher } from 'test/cryptography/fake-hasher';
+import { MakeUser } from 'test/factory/make-user-factory';
 
 let inMemoryUserRepository: InMemoryUserRepository;
+
 let hashGenerator: FakeHasher;
+
 let sut: EditUserUseCase;
 
 describe('Edit User', () => {
@@ -15,7 +17,8 @@ describe('Edit User', () => {
   });
   it('Should be able edit user', async () => {
     const user = MakeUser();
-    inMemoryUserRepository.create(user);
+
+    await inMemoryUserRepository.create(user);
 
     const result = await sut.execute({
       id: user.id.toString(),
@@ -29,7 +32,8 @@ describe('Edit User', () => {
   });
   it('Should not be able edit user with another email', async () => {
     const user = MakeUser();
-    inMemoryUserRepository.create(user);
+
+    await inMemoryUserRepository.create(user);
 
     const result = await sut.execute({
       id: user.id.toString(),

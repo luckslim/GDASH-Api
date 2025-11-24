@@ -19,6 +19,7 @@ type EditUserResponse = Either<
   ResourceNotFoundError | NotAllowedError,
   { user: User }
 >;
+
 @Injectable()
 export class EditUserUseCase {
   constructor(

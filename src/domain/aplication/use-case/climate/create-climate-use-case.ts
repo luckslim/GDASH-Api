@@ -1,7 +1,8 @@
 import { right, type Either } from '@/core/either';
 import { WrongCredentialsError } from '@/core/errors/wrong-credentials-error';
-import type { ClimateRepository } from '../../repository/climate-repository';
+import { ClimateRepository } from '../../repository/climate-repository';
 import { Climate } from '@/domain/enterprise/entities/climate';
+import { Inject, Injectable } from '@nestjs/common';
 
 interface CreateClimateRequest {
   timeStamp: Date;
@@ -15,9 +16,11 @@ type CreateClimateResponse = Either<
   WrongCredentialsError,
   { climate: Climate }
 >;
-
+@Injectable()
 export class CreateClimateUseCase {
-  constructor(private climateRepository: ClimateRepository) {}
+  constructor(
+    @Inject(ClimateRepository) private climateRepository: ClimateRepository,
+  ) {}
   async execute({
     temperature,
     timeStamp,

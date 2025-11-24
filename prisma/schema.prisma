@@ -19,12 +19,12 @@ model User {
 
 model Climate {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  timeStamp     String
-  temperature   String
-  windSpeed     String
+  timeStamp     DateTime
+  temperature   Int
+  windSpeed     Int
   windDirection String
   weatherCode   String
-  createdAt     DateTime @default(now())
+  createdAt     DateTime? @default(now())
 
   @@map("climate")
 }

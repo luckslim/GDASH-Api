@@ -1,25 +1,32 @@
 import { User } from '@/domain/enterprise/entities/user';
-import { FakeEncrypter } from '../../../../../test/cryptography/fake-encrypter';
-import { FakeHasher } from '../../../../../test/cryptography/fake-hasher';
-import { InMemoryUserRepository } from '../../../../../test/repository/in-memory-user-repository';
 import { AuthenticateUserUseCase } from './authenticate-use-case';
+import { FakeEncrypter } from 'test/cryptography/fake-encrypter';
+import { InMemoryUserRepository } from 'test/repository/in-memory-user-repository';
+import { FakeHasher } from 'test/cryptography/fake-hasher';
 
 let inMemoryUserRepository: InMemoryUserRepository;
+
 let hashGenerator: FakeHasher;
+
 let encrypter: FakeEncrypter;
+
 let sut: AuthenticateUserUseCase;
 
 describe('Authenticate User', () => {
   beforeEach(() => {
     inMemoryUserRepository = new InMemoryUserRepository();
+
     hashGenerator = new FakeHasher();
+
     encrypter = new FakeEncrypter();
+
     sut = new AuthenticateUserUseCase(
       inMemoryUserRepository,
       hashGenerator,
       encrypter,
     );
   });
+
   it('Should be able authenticate user', async () => {
     const user = User.create({
       name: 'john Snow',
