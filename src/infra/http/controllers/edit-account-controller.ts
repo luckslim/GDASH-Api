@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { z } from 'zod';
 import { ZodValidationPipe } from '../pipe/zod-validation-pipe';
-import { CreateUserUseCase } from '@/domain/aplication/use-case/user/create-user-use-case';
 import { CredentialAlreadyExistError } from '@/core/errors/credential-already-exist-error';
 import { EditUserUseCase } from '@/domain/aplication/use-case/user/edit-user-use-case';
 import { AuthGuard } from '@nestjs/passport';
@@ -38,6 +37,7 @@ export class EditAccountController {
   ) {
     const { sub } = user;
     const { name, userName, email, password } = body;
+
     const result = await this.editUserUseCase.execute({
       id: sub,
       name,
@@ -45,6 +45,7 @@ export class EditAccountController {
       email,
       password,
     });
+
     if (result.isLeft()) {
       const error = result.value;
       switch (error.constructor) {
