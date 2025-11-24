@@ -1,8 +1,9 @@
 import { left, right, type Either } from '@/core/either';
 import { WrongCredentialsError } from '@/core/errors/wrong-credentials-error';
 
-import type { UserRepository } from '../../repository/user-repository';
+import { UserRepository } from '../../repository/user-repository';
 import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error';
+import { Inject, Injectable } from '@nestjs/common';
 
 interface DeleteUserRequest {
   id: string; //id from jwt
@@ -11,8 +12,9 @@ interface DeleteUserRequest {
 
 type DeleteUserResponse = Either<WrongCredentialsError, { message: string }>;
 
+@Injectable()
 export class DeleteUserUseCase {
-  constructor(private userRepository: UserRepository) {}
+  constructor(@Inject(UserRepository) private userRepository: UserRepository) {}
 
   async execute({ id, email }: DeleteUserRequest): Promise<DeleteUserResponse> {
     const admin = await this.userRepository.findById(id);

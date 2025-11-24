@@ -1,4 +1,4 @@
-import { randomUUID } from 'node:crypto';
+import { ObjectId } from 'mongodb';
 
 export class UniqueEntityID {
   private value: string;
@@ -9,6 +9,6 @@ export class UniqueEntityID {
     return this.value;
   }
   constructor(value?: string) {
-    this.value = value ?? randomUUID();
+    this.value = value ?? new ObjectId().toHexString();
   }
 }
