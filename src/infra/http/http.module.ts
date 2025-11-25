@@ -15,9 +15,12 @@ import { DeleteClimateController } from './controllers/climate/delete-climate-co
 import { DeleteClimateUseCase } from '@/domain/aplication/use-case/climate/delete-climate-use-case';
 import { GetClimateController } from './controllers/climate/get-climate-controller';
 import { GetClimateUseCase } from '@/domain/aplication/use-case/climate/get-climate-use-case';
+import { ExportModule } from '../export/export.module';
+import { ExportClimateController } from './controllers/climate/export-climate-controller';
+import { ExportCSVUseCase } from '@/domain/aplication/use-case/climate/export-climate-csv-use-case';
 
 @Module({
-  imports: [DatabaseModule, CryptographyModule],
+  imports: [DatabaseModule, CryptographyModule, ExportModule],
   controllers: [
     CreateAccountController,
     AuthenticateController,
@@ -26,6 +29,7 @@ import { GetClimateUseCase } from '@/domain/aplication/use-case/climate/get-clim
     CreateClimateController,
     DeleteClimateController,
     GetClimateController,
+    ExportClimateController,
   ],
   providers: [
     CreateUserUseCase,
@@ -35,6 +39,7 @@ import { GetClimateUseCase } from '@/domain/aplication/use-case/climate/get-clim
     CreateClimateUseCase,
     DeleteClimateUseCase,
     GetClimateUseCase,
+    ExportCSVUseCase,
   ],
 })
 export class HttpModule {}
