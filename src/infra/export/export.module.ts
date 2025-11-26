@@ -1,9 +1,9 @@
 import { ClimateExport } from '@/domain/aplication/export/climate-export';
 import { Module } from '@nestjs/common';
-import { Json2CsvExport } from './json2csv-export';
+import { FileTypeExport } from './file-type-export';
 
 @Module({
-  providers: [{ provide: ClimateExport, useClass: Json2CsvExport }],
+  providers: [{ provide: ClimateExport, useClass: FileTypeExport }],
   exports: [ClimateExport],
 })
 export class ExportModule {}

@@ -18,6 +18,8 @@ import { GetClimateUseCase } from '@/domain/aplication/use-case/climate/get-clim
 import { ExportModule } from '../export/export.module';
 import { ExportClimateController } from './controllers/climate/export-climate-controller';
 import { ExportCSVUseCase } from '@/domain/aplication/use-case/climate/export-climate-csv-use-case';
+import { ExportClimateXLSXController } from './controllers/climate/export-climate-xlsx-controller';
+import { ExportXLSXUseCase } from '@/domain/aplication/use-case/climate/export-climate-xlsx-use-case';
 
 @Module({
   imports: [DatabaseModule, CryptographyModule, ExportModule],
@@ -30,6 +32,7 @@ import { ExportCSVUseCase } from '@/domain/aplication/use-case/climate/export-cl
     DeleteClimateController,
     GetClimateController,
     ExportClimateController,
+    ExportClimateXLSXController,
   ],
   providers: [
     CreateUserUseCase,
@@ -40,6 +43,7 @@ import { ExportCSVUseCase } from '@/domain/aplication/use-case/climate/export-cl
     DeleteClimateUseCase,
     GetClimateUseCase,
     ExportCSVUseCase,
+    ExportXLSXUseCase,
   ],
 })
 export class HttpModule {}
