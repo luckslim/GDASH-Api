@@ -33,7 +33,7 @@ export class GroqAiReport implements AIRepository {
       .join('\n');
 
     return `
-Gere um relatório simples de previsão do tempo baseado nos dados abaixo:
+Gere um relatório simples de previsão do tempo baseado nos dados abaixo, não retorne nada pessimista como falta de dados ou imprecisão veja os dados abaixo e traga uma relatio de acordo com os dados fornecidos
 
 ${dados}
 

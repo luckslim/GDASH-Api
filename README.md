@@ -1,98 +1,272 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="https://nestjs.com/" target="blank">
+    <img src="https://gdash.io/wp-content/uploads/2025/02/logo.gdash_.white_.png" width="120" alt="Nest Logo" />
+  </a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<h1 align="center">GDASH - Desafio técnico</h1>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+<p align="center">
+  <b>Backend desenvolvido por Lucas Soares Lima usando Clean Architecture e NestJS</b><br/>
+  <sub>Focado em desacoplamento, escalabilidade de código e organização por camadas de domínio.</sub>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+### End-Points de User:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+| Método   | Endpoint                        | Descrição                      |
+| :------- | :------------------------------ | :----------------------------- |
+| **POST** | `http://localhost:3333/account` | Cria uma nova conta de usuário |
 
-## Project setup
+#### Exemplo de Body:
 
-```bash
-$ npm install
+```json
+{
+  "name": "johnSnow",
+  "userName": "johnSnow_123",
+  "email": "johnSnow@gmail.com",
+  "password": "123123"
+}
 ```
 
-## Compile and run the project
+---
+
+| Método   | Endpoint                             | Descrição                                      |
+| :------- | :----------------------------------- | :--------------------------------------------- |
+| **POST** | `http://localhost:3333/authenticate` | Autenticação de usuário - Retornando jwt-token |
+
+#### Exemplo de Body:
+
+```json
+{
+  "email": "johnSnow@gmail.com",
+  "password": "123123"
+}
+```
+
+---
+
+### OBS: Essa rota só pode ser acessada com token
+
+| Método   | Endpoint                               | Descrição       |
+| :------- | :------------------------------------- | :-------------- |
+| **POST** | `http://localhost:3333/delete/account` | Deletar usuário |
+
+#### Exemplo de Body:
+
+### \_Bearer Token `${SEU_TOKEN}`
+
+```json
+{
+  "email": "johnSnow@gmail.com"
+}
+```
+
+---
+
+### OBS: Essa rota só pode ser acessada com token
+
+| Método   | Endpoint                             | Descrição      |
+| :------- | :----------------------------------- | :------------- |
+| **POST** | `http://localhost:3333/edit/account` | Editar Usuário |
+
+#### Exemplo de Body:
+
+### \_Bearer Token `${SEU_TOKEN}`
+
+```json
+{
+  "name": "New User",
+  "userName": "new_User_123",
+  "email": "johnSnow@gmail.com",
+  "password": "newPassword"
+}
+```
+
+---
+
+### End-Points Climate:
+
+| Método   | Endpoint                        | Descrição                          |
+| :------- | :------------------------------ | :--------------------------------- |
+| **POST** | `http://localhost:3333/climate` | Cria uma novos dados sobre o clima |
+
+#### Exemplo de Body:
+
+```json
+{
+  "timeStamp": "2025-11-24T10:30:00Z",
+  "temperature": 40.5,
+  "windSpeed": 12.3,
+  "windDirection": "NE",
+  "weatherCode": "80"
+}
+```
+
+---
+
+| Método   | Endpoint                               | Descrição                 |
+| :------- | :------------------------------------- | :------------------------ |
+| **POST** | `http://localhost:3333/delete/climate` | Deletar dados sobre Clima |
+
+#### Exemplo de Body:
+
+```json
+{
+  "id": "ID from climate"
+}
+```
+
+---
+
+### OBS: Essa rota só pode ser acessada com token
+
+### \_Bearer Token `${SEU_TOKEN}`
+
+| Método  | Endpoint                                  | Descrição                  |
+| :------ | :---------------------------------------- | :------------------------- |
+| **GET** | `http://localhost:3333/get/:page/climate` | Buscar dados com paginação |
+
+---
+
+### OBS: Essa rota só pode ser acessada com token
+
+### \_Bearer Token `${SEU_TOKEN}`
+
+| Método  | Endpoint                                                     | Descrição                          |
+| :------ | :----------------------------------------------------------- | :--------------------------------- |
+| **GET** | `http://localhost:3333/get/:page/climate/weather/export/csv` | Exportar dados (CSV) com paginação |
+
+---
+
+### OBS: Essa rota só pode ser acessada com token
+
+### \_Bearer Token `${SEU_TOKEN}`
+
+| Método  | Endpoint                                                      | Descrição                           |
+| :------ | :------------------------------------------------------------ | :---------------------------------- |
+| **GET** | `http://localhost:3333/get/:page/climate/weather/export/xlsx` | Exportar dados (xlsx) com paginação |
+
+---
+
+### OBS: Essa rota só pode ser acessada com token
+
+### \_Bearer Token `${SEU_TOKEN}`
+
+| Método  | Endpoint                                        | Descrição                 |
+| :------ | :---------------------------------------------- | :------------------------ |
+| **GET** | `http://localhost:3333/get/1/report/AI/climate` | (reports) insights com IA |
+
+## 🧠 Sobre o Projeto
+
+Este projeto implementa um pipeline de coleta e processamento de dados climáticos usando **Python**, **Go**, **RabbitMQ** e uma API **NestJS**.
+O Producer em Python consulta periodicamente a API Open-Meteo e envia os dados para uma fila no RabbitMQ.
+O Worker em Go consome essas mensagens, converte o formato e envia os dados padronizados para a API Nest.
+A API recebe, valida e armazena as informações climáticas para uso posterior.
+O sistema é modular, escalável e integra múltiplas linguagens e serviços em um fluxo automatizado de dados.
+
+---
+
+OBS: Para rodar este projeto localmente, você precisa criar um arquivo .env e definir as seguintes variáveis:
 
 ```bash
-# development
-$ npm run start
+# Gerada no site Oficial MongoDB Atlas
+DATABASE_URL → URL de conexão com o banco de dados (utilizando as configurações do MongoDb Atlas).
 
-# watch mode
+# Gere as chaves com base no algoritmo (256) para jwt token
+JWT_PUBLIC_KEY → Chave pública para assinatura de tokens JWT.
+
+JWT_PRIVATE_KEY → Chave privada para assinatura de tokens JWT.
+
+#Gerada no site oficial de Groq
+GROQ_API_KEY → Chave privada para assinatura de tokens JWT.
+```
+
+## 🧰 Tecnologias e Ferramentas
+
+- ⚙️ **NestJS** → Framework Node.js modular e escalável.
+- 🔐 **Passport** → Middleware de autenticação.
+- 🎫 **JWT** → Autenticação via tokens seguros.
+- 🧩 **Zod** → Validação e tipagem de dados.
+- 🗄️ **Prisma** → ORM moderno para banco de dados.
+- 🐳 **Docker** → Containers para ambiente isolado e portátil.
+- 🧪 **Vitest** → Testes unitários e de integração.
+- 🧠 **Faker.js** → Geração de dados falsos para testes.
+- 🔒 **bcryptjs** → Criptografia de senhas.
+- 🌐 **GroqAI** → Inteligencia Artificial (Relatório sobre as ultimas atualizações do clima)
+
+---
+
+## 🚀 Configuração do Projeto
+
+```bash
+# Instalar dependências
+$ npm install
+
+# Rodar o servidor em modo desenvolvimento
 $ npm run start:dev
 
-# production mode
+# Build de produção
 $ npm run start:prod
-```
 
-## Run tests
-
-```bash
-# unit tests
+# Rodar Testes Unitários
 $ npm run test
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# Subir Container
+$ docker compose up -d
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## 🚀 Configuração do Projeto (Go + Python)
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+sudo apt install rabbitmq-server
+sudo systemctl enable rabbitmq-server
+sudo systemctl start rabbitmq-server
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+🐍 - Como executar o Producer (Python)
+O Producer coleta dados da API Open-Meteo e envia para a fila weather_queue no RabbitMQ.
 
-## Resources
+📦 1. Dependências necessárias
 
-Check out a few resources that may come in handy when working with NestJS:
+-Instale Python 3 e pip.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+-Instale as dependências:
 
-## Support
+-Crie um requirements.txt com:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+pika
+requests
 
-## Stay in touch
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+-Instale
 
-## License
+```bash
+pip install -r requirements.txt
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+▶️ Executar o Producer
+
+```bash
+
+python3 producer.py
+
+```
+
+🦫 - Como executar o Worker (Go)
+-O Worker consome mensagens enviadas pelo Python e converte o formato para o DTO da API Nest, enviando via HTTP.
+
+📦 - Dependências necessárias
+
+-Instale o Go (versão 1.20 ou superior).
+
+-O Go baixa automaticamente as dependências ao rodar o comando.
+
+▶️ - Executar o Worker
+
+Dentro da pasta do Worker:
+
+```bash
+go run main.go
+```
