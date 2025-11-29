@@ -23,6 +23,8 @@ import { ExportXLSXUseCase } from '@/domain/aplication/use-case/climate/export-c
 import { GroqModule } from '../groqAI/groq.module';
 import { ReportAIClimateController } from './controllers/climate/report-AI-controller';
 import { ReportClimateUseCase } from '@/domain/aplication/use-case/climate/report-climate-use-case';
+import { GetAccountController } from './controllers/user/get-account-controller';
+import { GetUserUseCase } from '@/domain/aplication/use-case/user/get-user-use-case';
 
 @Module({
   imports: [DatabaseModule, CryptographyModule, ExportModule, GroqModule],
@@ -37,6 +39,7 @@ import { ReportClimateUseCase } from '@/domain/aplication/use-case/climate/repor
     ExportClimateController,
     ExportClimateXLSXController,
     ReportAIClimateController,
+    GetAccountController,
   ],
   providers: [
     CreateUserUseCase,
@@ -49,6 +52,7 @@ import { ReportClimateUseCase } from '@/domain/aplication/use-case/climate/repor
     ExportCSVUseCase,
     ExportXLSXUseCase,
     ReportClimateUseCase,
+    GetUserUseCase,
   ],
 })
 export class HttpModule {}
