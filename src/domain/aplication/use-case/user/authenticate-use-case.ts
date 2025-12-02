@@ -3,7 +3,6 @@ import { WrongCredentialsError } from '@/core/errors/wrong-credentials-error';
 
 import { UserRepository } from '../../repository/user-repository';
 import { HashComparer } from '../../cryptography/hash-comparer';
-import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error';
 import { Encrypter } from '../../cryptography/encrypter';
 import { Inject, Injectable } from '@nestjs/common';
 
