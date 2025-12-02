@@ -13,7 +13,7 @@ interface AuthenticateUserRequest {
 }
 
 type AuthenticateUserResponse = Either<
-  ResourceNotFoundError,
+  WrongCredentialsError,
   { access_token: string }
 >;
 @Injectable()
@@ -30,7 +30,7 @@ export class AuthenticateUserUseCase {
     const emailExist = await this.userRepository.findByEmail(email);
 
     if (!emailExist) {
-      return left(new ResourceNotFoundError());
+      return left(new WrongCredentialsError());
     }
 
     const isPasswordValid = await this.hashComparer.compare(
