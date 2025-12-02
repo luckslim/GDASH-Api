@@ -30,10 +30,10 @@ export class PrismaClimateRepository implements ClimateRepository {
   async findManyRecent(page: number): Promise<Climate[]> {
     const climate = await this.prisma.climate.findMany({
       orderBy: {
-        createdAt: 'asc',
+        createdAt: 'desc',
       },
-      take: 5,
-      skip: (page - 1) * 5,
+      take: 24,
+      skip: (page - 1) * 24,
     });
     return climate.map(PrismaClimateMapper.toDomain);
   }
