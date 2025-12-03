@@ -11,6 +11,13 @@
   <sub>Focado em desacoplamento, escalabilidade de código e organização por camadas de domínio.</sub>
 </p>
 
+<p>
+  <strong>Acesse o Link repositório do dashboard</strong>
+  <a href="https://github.com/luckslim/GDASH-dashboard" target="_blank">
+    <img src="https://img.shields.io/badge/🚀%20Repositorio%20no%20GitHub-000000?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
+</p>
+
 ### End-Points de User:
 
 | Método   | Endpoint                        | Descrição                      |
