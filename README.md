@@ -7,7 +7,7 @@
 <h1 align="center">GDASH - Desafio técnico</h1>
 
 <p align="center">
-  <b>Backend desenvolvido por Lucas Soares Lima usando Clean Architecture e NestJS</b><br/>
+  <b>Back-end desenvolvido por Lucas Soares Lima usando Clean Architecture, NestJS e front-end com React.JS</b><br/>
   <sub>Focado em desacoplamento, escalabilidade de código e organização por camadas de domínio.</sub>
 </p>
 
@@ -17,6 +17,46 @@
     <img src="https://img.shields.io/badge/🚀%20Repositorio%20no%20GitHub-000000?style=for-the-badge&logo=github&logoColor=white" />
   </a>
 </p>
+
+<p>
+  <strong>Acesse o Link do Deploy:</strong>
+  <a href="https://gdash-dashboard.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/🚀%20Deploy%20na%20Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
+  </a>
+</p>
+
+
+## 🛠️ Tecnologias Utilizadas - (Front-end)
+
+| Tecnologia                  | Descrição                                                                          |
+| --------------------------- | ---------------------------------------------------------------------------------- |
+| ⚛️ **React**                | Biblioteca moderna para construção de interfaces interativas e reativas.           |
+| 🎨 **Tailwind CSS**         | Framework utilitário para estilização rápida, responsiva e altamente customizável. |
+| 🧩 **shadcn/ui**            | Componentes estilizados e acessíveis, baseados em Tailwind e Radix UI.             |
+| 🟢 **Node.js**              | Ambiente JavaScript server-side rápido e escalável.                                |
+| 🍃 **MongoDB Atlas**        | Banco de dados NoSQL em nuvem, fácil de escalar e gerenciado.                      |
+| 🔑 **JWT (JSON Web Token)** | Autenticação segura e moderna baseada em tokens.                                   |
+| 🧹 **Zod**                  | Biblioteca poderosa para validação de esquemas e formulários no front e no back.   |
+
+---
+
+## 🚀 Como rodar localmente
+
+```bash
+# Clone o repositório
+git clone <link do repositório >
+
+# Entre na pasta
+cd seuprojeto
+
+# Instale as dependências
+npm install
+
+# Configure ou crie o arquivo .env (Stripe, Auth, DB, etc.)
+
+# Rode a aplicação
+npm run dev
+```
 
 ### End-Points de User:
 
